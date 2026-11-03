@@ -81,8 +81,6 @@ python health_check.py
 სკრიპტი ამოწმებს ამ მისამართს:
 https://devops-midterm-project.vercel.app/api/health
 
-თუ პასუხია HTTP 200 და status არის healthy,
-შემოწმება წარმატებულია. პასუხს მაქსიმუმ 10 წამი ელოდება.
 
 შედეგი და შემოწმების დრო იწერება uptime_status.log ფაილში.
 წარმატებისას სკრიპტი სრულდება კოდით 0, შეცდომისას — კოდით 1.
