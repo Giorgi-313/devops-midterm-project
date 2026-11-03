@@ -1,8 +1,8 @@
 import urllib.request
 import datetime
 
-# როცა Vercel-ზე ატვირთავ, აქ შენი რეალური ლინკი უნდა ჩასვა. ლოკალურად მოსინჯვისას იყოს localhost.
-URL_TO_CHECK = "https://your-vercel-project-link.vercel.app/api/health"
+
+URL_TO_CHECK = "https://devops-midterm-project.vercel.app/api/health"
 LOG_FILE = "uptime_status.log"
 
 def check_health():
