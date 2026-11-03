@@ -1,0 +1,61 @@
+name: DevOps Midterm Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-stage:
+    name: Build & Setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Compile Check
+        run: python -m py_compile app_core.py test_api.py
+
+  test-stage:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+    needs: build-stage
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+      - name: Execute Pytest
+        run: pytest -v test_api.py
+
+  deploy-stage:
+    name: Deploy to Vercel
+    runs-on: ubuntu-latest
+    needs: test-stage
+    if: github.ref == 'refs/heads/main' # დეპლოი გაკეთდება მხოლოდ main-ზე ფუშის დროს
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install Vercel
+        run: npm install --global vercel
+      - name: Execute Deployment
+        run: vercel deploy --prod --yes --token="${{ secrets.VERCEL_TOKEN }}"
