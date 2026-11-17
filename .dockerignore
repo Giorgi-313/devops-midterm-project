@@ -1,0 +1,13 @@
+.git
+.idea
+.venv
+venv
+__pycache__
+.pytest_cache
+*.pyc
+*.iml
+.vercel
+.env
+.env.*
+uptime_status.log
+docs
