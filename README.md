@@ -70,13 +70,6 @@ vercel.json მიუთითებს app_core.py ფაილს.
 Vercel-ის დამოუკიდებელი Git-დეპლოიმენტი გამორთულია,
 რადგან დეპლოი GitHub Actions-იდან სრულდება ტესტების გავლის შემდეგ.
 
-## ჯანმრთელობის შემოწმება
-
-შემოწმების ხელით გასაშვებად:
-
-```bash
-python health_check.py
-```
 
 სკრიპტი ამოწმებს ამ მისამართს:
 https://devops-midterm-project.vercel.app/api/health
@@ -116,3 +109,6 @@ main ბრენჩზე სამივე ეტაპი წარმატ
 Vercel-ზე გაშვებული აპლიკაციის სტატისტიკის გვერდი.
 
 ![Application](docs/screenshots/application.png)
+
+### Docker 
+პროექტის მთავარ Folder ში ვაწყობთ image-ს
